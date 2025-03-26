@@ -93,9 +93,10 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         controller: senhaController,
         validator: Validation.validationSenha,
+        obscureText: offPass,
         decoration: InputDecoration(
           suffixIcon: IconButton( 
-            icon: Icon(offPass ? Icons.visibility : Icons.visibility_off),
+            icon: Icon(offPass ? Icons.visibility_off : Icons.visibility),
             onPressed:  _showPassword),
             labelText: 'Digite sua senha',
             hintText: 'Digite sua senha',

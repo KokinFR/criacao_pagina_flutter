@@ -13,6 +13,7 @@ class RegistrarPage extends StatefulWidget {
 class _RegistrarPageState extends State<RegistrarPage> {
   
   bool offPass = true;
+  bool offPassConfirm = true;
 
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
@@ -29,7 +30,7 @@ class _RegistrarPageState extends State<RegistrarPage> {
 
   _showConfirmPassword () {
     setState(() {
-      offPass = !offPass;
+      offPassConfirm = !offPassConfirm;
     });
   }
 
@@ -106,10 +107,11 @@ class _RegistrarPageState extends State<RegistrarPage> {
     return TextFormField(  
       controller: senhaController,
       validator: Validation.validationSenha,
+      obscureText: offPass,
       decoration: InputDecoration(
         suffixIcon: IconButton(
           onPressed: _showPassword, 
-          icon: Icon(offPass ? Icons.visibility : Icons.visibility_off),
+          icon: Icon(offPass ? Icons.visibility_off : Icons.visibility),
         ),
         prefixIcon: Icon(
           Icons.password,
@@ -134,10 +136,11 @@ class _RegistrarPageState extends State<RegistrarPage> {
     return TextFormField(
       controller: confirmarSenhaController,
       validator: (value) => Validation.validationConfirmaSenha(value, senhaController.text),
+      obscureText: offPassConfirm,
       decoration: InputDecoration(
         suffixIcon: IconButton(
           onPressed: _showConfirmPassword, 
-          icon: Icon(offPass ? Icons.visibility : Icons.visibility_off),
+          icon: Icon(offPassConfirm ? Icons.visibility_off : Icons.visibility),
         ),
         prefixIcon: Icon(
           Icons.password,
